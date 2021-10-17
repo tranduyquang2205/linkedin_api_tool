@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>LinkedIn Tools</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+        <meta content="Coderthemes" name="author">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="https://coderthemes.com/ubold/layouts/assets/images/favicon.ico">
+
+		<!-- App css -->
+		<link href="assets/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet">
+		<link href="assets/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet">
+
+		<link href="assets/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled">
+		<link href="assets/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled="disabled">
+
+		<!-- icons -->
+		<link href="assets/icons.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+
+    <!-- body start -->
+    <body class="menuitem-active" data-layout="{&quot;mode&quot;: &quot;light&quot;, &quot;width&quot;: &quot;fluid&quot;, &quot;menuPosition&quot;: &quot;fixed&quot;, &quot;sidebar&quot;: { &quot;color&quot;: &quot;light&quot;, &quot;size&quot;: &quot;default&quot;, &quot;showuser&quot;: false}, &quot;topbar&quot;: {&quot;color&quot;: &quot;dark&quot;}, &quot;showRightSidebarOnPageLoad&quot;: true}" data-sidebar-size="default" data-layout-width="fluid" data-layout-menu-position="fixed" data-sidebar-color="light" data-sidebar-showuser="false" data-topbar-color="dark" style="visibility: visible; opacity: 1;">
+
+        <!-- Begin page -->
+        <div id="wrapper" class="show">
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <!-- Right Sidebar -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="inbox-leftbar">
+                                            <div class="btn-group d-block mb-2">
+                                                <button type="button" onclick="window.location.reload()" class="btn btn-success w-100 waves-effect waves-light dropdown-toggle"><i class="mdi mdi-reload"></i> Reload</button>
+                                            </div>
+                                            <div class="mail-list mt-3">
+                                                <button onclick="get_account_list()" class="list-group-item border-0"><i class="mdi mdi-view-list font-18 align-middle me-2"></i>Danh sách tài khoản</button>
+                                                <button onclick="get_auto_connect()" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Auto Connect</button>
+                                                <button onclick="get_update_info()"  class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Đồng bộ Info</button>
+                                                <button onclick="get_connection_filter()"  class="list-group-item border-0"><i class="mdi mdi-filter-outline font-18 align-middle me-2"></i>Lọc Connection</button>        
+                                                <button onclick="get_send_message()" class="list-group-item border-0"><i class="mdi mdi-message font-18 align-middle me-2"></i>Gửi tin nhắn</button>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="inbox-rightbar">
+                                            <div class="mt-3" id="account_list">
+                                                <h5 class="mb-3">Quản lý tài khoản</h5>
+
+                                                <div class="table-responsive" >
+                                                    <table class="table table-centered table-nowrap mb-0">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th class="border-0">Username</th>
+                                                                <th class="border-0">Password</th>
+                                                                <th class="border-0">Tin nhắn mới</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="table_account">
+                                                            <tr id="loading_row"><td><p class="mb-0"><p>Đang lấy thông tin tin nhắn...</p></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3" id="update_info"  style="display: none">
+                                                <h5 class="mb-3">Đồng bộ Info</h5>
+                                                <div class="row" >
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="text-muted font-13">Nhập thông tin cần đồng bộ các account.</p>
+                                
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">First Name</label>
+                                                                            <input required type="text" class="form-control" id="inputFName" placeholder="First Name">
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputPassword4" class="form-label">Last Name</label>
+                                                                            <input required type="text" class="form-control" id="inputLName" placeholder="Last Name">
+                                                                        </div>
+                                                                    </div>
+                                
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress" class="form-label">Info</label>
+                                                                        <input required type="text" class="form-control" id="inputInfo" placeholder="Info">
+                                                                    </div>
+                                
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress2" class="form-label">Address</label>
+                                                                        <input required type="text" class="form-control" id="inputAddress" value="urn:li:fsd_geo:104370960" placeholder="urn:li:fsd_geo:104370960">
+                                                                    </div>
+                                                                    <button onclick="update_info()" id="submit_button" type="button" class="btn btn-primary waves-effect waves-light">   Đồng bộ</button>
+                                
+                                                                </form>
+                                
+                                                            </div> <!-- end card-body -->
+                                                        </div> <!-- end card-->
+                                                    </div> <!-- end col -->
+                                                </div>
+                                            </div>      
+                                            <div class="mt-3" id="auto_connect"  style="display: none">
+                                                <h5 class="mb-3">Auto connect</h5>
+                                                <div class="row" >
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="text-muted font-13">Nhập thông tin để auto connect.</p>
+                                
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">Từ khóa tìm kiếm</label>
+                                                                            <input required type="text" class="form-control" id="inputKeywords" placeholder="Từ khóa">
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputPassword4" class="form-label">Giới hạn</label>
+                                                                            <input required type="number" min="0" max="10000" value="100" step="50" class="form-control" id="inputLimit" placeholder="Số lượng tìm kiếm">
+                                                                        </div>
+                                                                    </div>
+                                
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress" class="form-label">Tin nhắn</label>
+                                                                        <input required type="text" class="form-control" id="inputMessage" placeholder="Tin nhắn">
+                                                                    </div>
+                                
+                                                                
+                                
+                                
+                                                                    <button onclick="auto_connect()" id="connect_button" type="button" class="btn btn-primary waves-effect waves-light">   Auto connect</button>
+                                
+                                                                </form>
+                                
+                                                            </div> <!-- end card-body -->
+                                                        </div> <!-- end card-->
+                                                    </div> <!-- end col -->
+                                                </div>
+                                            </div>   
+                                            <div class="mt-3" id="connection_filter"  style="display: none">
+                                                <h5 class="mb-3">Lọc Connection</h5>
+                                                <div class="row" >
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="text-muted font-13">Nhập profile muốn lọc.</p>
+                                
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">Tài khoản</label>
+                                                                            <input required type="text" class="form-control" id="filterUser" placeholder="Username">
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">Mật khẩu</label>
+                                                                            <input required type="text" class="form-control" id="filterPass" placeholder="Password">
+                                                                        </div>
+                                                    
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress" class="form-label">Từ khóa lọc</label>
+                                                                        <input required type="text" class="form-control" id="filterKeywords" value="Account-Senior-Marketing-Digital-Director-CEO-Media">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                    <div class="progress mb-0" id="process_bar">
+                                                                        
+                                                                    </div></div>
+                                                                    <button onclick="connection_filter()" id="filter_button" type="button" class="btn btn-primary waves-effect waves-light">   Filter</button>
+
+                                
+                                
+                                                                    
+                                
+                                                                </form>
+                                
+                                                            </div> <!-- end card-body -->
+                                                        </div> <!-- end card-->
+                                                    </div> <!-- end col -->
+                                                </div>
+                                            </div>   
+                                            <div class="mt-3" id="send_message"  style="display: none">
+                                                <h5 class="mb-3">Gửi tin nhắn</h5>
+                                                <div class="row" >
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="text-muted font-13">Nhập tin nhắn muốn gửi.</p>
+                                
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">Tài khoản</label>
+                                                                            <input required type="text" class="form-control"  id="sendUser" placeholder="Username">
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="inputEmail4" class="form-label">Mật khẩu</label>
+                                                                            <input required type="text" class="form-control"  id="sendPass" placeholder="Password">
+                                                                        </div>
+                                                    
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress" class="form-label">Tải lên file excel</label>
+                                                                        <input required type="file" class="form-control" id="sendFile" value="Account-Senior-Marketing-Digital-Director-CEO-Media">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="inputAddress" class="form-label">Nội dung tin nhắn</label>
+                                                                        <textarea style="height:170px" required type="text" class="form-control" id="sendContent"></textarea>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" checked value="1" class="form-check-input" id="sendDelete">
+                                                                            <label class="form-check-label" for="customCheck11">Xóa ngay sau khi gửi</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button onclick="send_message()"  id="send_button" type="button" class="btn btn-primary waves-effect waves-light">   Send</button>
+
+                                
+                                
+                                                                    
+                                
+                                                                </form>
+                                
+                                                            </div> <!-- end card-body -->
+                                                        </div> <!-- end card-->
+                                                    </div> <!-- end col -->
+                                                </div>
+                                            </div>   
+
+                                            
+                                        </div> 
+                                        <!-- end inbox-rightbar-->
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div> <!-- end card -->
+
+                            </div> <!-- end Col -->
+                        </div><!-- End row -->
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        
+
+
+
+        <!-- Vendor js -->
+        <script src="assets/vendor.min.js.download"></script>
+
+        <!-- App js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="assets/app.min.js.download"></script>
+        <script type="text/javascript" src="/eel.js"></script>
+        <script src="assets/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+    
+</body></html>
